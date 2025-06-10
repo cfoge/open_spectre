@@ -185,10 +185,11 @@ begin
     -- NOISE GENERATOR
     noise_gen : entity work.rand_num
         generic map (
-            N => 8
+            N => 9
         )
             port map (
             clk => clk,
+            en => '1',
             reset => rst,
             q => noise_out
         );
