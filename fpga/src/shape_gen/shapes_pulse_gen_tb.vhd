@@ -45,6 +45,7 @@ begin
             ramp_out => ramp_out
         );
         
+        
     -- Stimulus process
     stim_proc: process
     begin

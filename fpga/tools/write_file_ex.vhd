@@ -31,11 +31,24 @@ end write_file_ex;
 
 architecture tb of write_file_ex is
     signal a : std_logic;
+    signal clk_d : std_logic;
 
     file output_buf : text;  -- text is keyword
 begin     
 
-    tb1 : process
+process(clk)
+begin
+if rising_edge(clk) then
+
+clk_d <= clk;
+
+end if;
+
+
+
+end process;
+
+    tb1 : process is
         variable write_col_to_output_buf : line; -- line is keyword
         begin
             file_open(output_buf, "frame_out.txt",  write_mode); 
@@ -44,7 +57,7 @@ begin
             
             wait until vs = '0';
             while vs = '0' loop
-                wait for 10 ns;
+                wait for 5 ns;
                 if (clk = '1') then
                     write(write_col_to_output_buf, clk);
                     write(write_col_to_output_buf, string'(","));
