@@ -51,6 +51,7 @@ Image.fromarray(combined_result).save("Vertical.png")
 
 # === Horizontal segments === ramp shouldnt restat at 0
 combined_condition = dist < ramp_valuesY 
+horizontal_seq = combined_condition
 combined_result = np.zeros((height, width), dtype=np.uint8)
 combined_result[combined_condition] = 255
 Image.fromarray(combined_result).save("Horizontal.png")
@@ -67,3 +68,16 @@ combined_condition = triangle < vertical_seq
 combined_result = np.zeros((height, width), dtype=np.uint8)
 combined_result[combined_condition] = 255
 Image.fromarray(combined_result).save("Palm.png")
+
+# ===== Criss cross ===========
+combined_condition = np.bitwise_xor(vertical_seq,horizontal_seq)
+combined_result = np.zeros((height, width), dtype=np.uint8)
+combined_result[combined_condition] = 255
+Image.fromarray(combined_result).save("criss_cross.png")
+
+# ======== Crisscross inverterd ========
+
+combined_condition = np.logical_not( np.bitwise_xor(vertical_seq,horizontal_seq))
+combined_result = np.zeros((height, width), dtype=np.uint8)
+combined_result[combined_condition] = 255
+Image.fromarray(combined_result).save("criss_cross_inverted.png")
